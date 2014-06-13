@@ -32,7 +32,8 @@ src_compile() {
 }
 
 src_install() {
-	use amd64 && MY_ARCH="x64"
+	local arch
+	use amd64 && arch="x64"
 
 	newsbin install.sh refind-install
 	newsbin mkrlconf.sh refind-mkrlconf
@@ -43,13 +44,13 @@ src_install() {
 	dodoc docs/refind/*
 
 	insinto /usr/share/${PN}
-	doins refind/refind_${MY_ARCH}.efi
-	doins -r drivers_${MY_ARCH}
+	doins refind/refind_${arch}.efi
+	doins -r drivers_${arch}
 	doins -r icons
 	doins refind.conf-sample
 
-	insinto /usr/share/${PN}/tools_${MY_ARCH}
-	doins gptsync/gptsync_${MY_ARCH}.efi
+	insinto /usr/share/${PN}/tools_${arch}
+	doins gptsync/gptsync_${arch}.efi
 
 	insinto /usr/share/${PN}/fonts
 	doins fonts/*.png
