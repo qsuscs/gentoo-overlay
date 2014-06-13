@@ -28,7 +28,6 @@ src_prepare() {
 }
 
 src_compile() {
-	local arch
 	emake -j1 gnuefi fs_gnuefi ARCH=x86_64
 }
 
