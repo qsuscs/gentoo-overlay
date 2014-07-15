@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Copyright 2014 Thomas Schneider <thosch97@gmail.com>
-# Distributed under the terms of the MIT License
+# Distributed under the terms of the ISC License
 
 EAPI=5
 
