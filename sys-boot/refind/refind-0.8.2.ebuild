@@ -14,8 +14,6 @@ KEYWORDS="~amd64" # Be sure what you do when expanding this!
 
 DEPEND=">=sys-boot/gnu-efi-3.0u"
 
-inherit toolchain-funcs
-
 # Many things borrowed from Arch’s PKGBUILD
 # See https://projects.archlinux.org/svntogit/packages.git/tree/trunk/PKGBUILD?h=packages/refind-efi
 
