@@ -28,7 +28,10 @@ src_prepare() {
 }
 
 src_compile() {
-	emake -j1 gnuefi fs_gnuefi ARCH=x86_64
+	local arch
+	use amd64 && arch="x86_64"
+
+	emake -j1 gnuefi fs_gnuefi ARCH=${arch}
 }
 
 src_install() {
