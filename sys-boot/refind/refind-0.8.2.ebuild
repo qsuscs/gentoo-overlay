@@ -18,11 +18,11 @@ DEPEND=">=sys-boot/gnu-efi-3.0u"
 # See https://projects.archlinux.org/svntogit/packages.git/tree/trunk/PKGBUILD?h=packages/refind-efi
 
 src_prepare() {
-	sed -i 's|^ThisDir=.*|ThisDir="/usr/share/refind/"|g' install.sh
-	sed -i 's|^RefindDir=.*|RefindDir="/usr/share/refind/"|g' install.sh
-	sed -i 's|^ThisScript=.*|ThisScript="/usr/sbin/refind-install"|g' install.sh
+	sed -i 's|^ThisDir=.*|ThisDir="/usr/share/refind/"|g' install.sh || die
+	sed -i 's|^RefindDir=.*|RefindDir="/usr/share/refind/"|g' install.sh || die
+	sed -i 's|^ThisScript=.*|ThisScript="/usr/sbin/refind-install"|g' install.sh || die
 
-	sed -i 's|../Styles/styles.css|styles.css|' docs/refind/*.html
+	sed -i 's|../Styles/styles.css|styles.css|' docs/refind/*.html || die
 }
 
 src_compile() {
