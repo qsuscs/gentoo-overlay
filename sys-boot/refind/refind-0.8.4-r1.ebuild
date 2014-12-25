@@ -3,6 +3,7 @@
 # Distributed under the terms of the ISC License
 
 EAPI=5
+inherit eutils
 
 DESCRIPTION="Rod Smith's fork of rEFIt UEFI Boot Manager"
 HOMEPAGE="http://www.rodsbooks.com/refind/"
@@ -18,6 +19,8 @@ DEPEND=">=sys-boot/gnu-efi-3.0u"
 # See https://projects.archlinux.org/svntogit/packages.git/tree/trunk/PKGBUILD?h=packages/refind-efi
 
 src_prepare() {
+	epatch "${FILESDIR}/0001-install.sh-Fixed-bug-in-creation-of-tools-directory-.patch"
+
 	sed -i \
 		-e 's|^ThisDir=.*|ThisDir="/usr/share/refind/"|g' \
 		-e 's|^RefindDir=.*|RefindDir="/usr/share/refind/"|g' \
