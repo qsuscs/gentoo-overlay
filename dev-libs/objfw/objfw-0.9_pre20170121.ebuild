@@ -7,7 +7,7 @@ EAPI=6
 HASH="dfa15c379dbb27013343c6995d850a50ef36297b"
 DESCRIPTION="A portable Objective-C framework."
 HOMEPAGE="https://heap.zone/objfw/"
-SRC_URI="https://github.com/Midar/objfw/archive/${HASH}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/Midar/${PN}/archive/${HASH}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-2 GPL-3 QPL"
 S="${WORKDIR}/${PN}-${HASH}"
 
