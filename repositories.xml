@@ -2,11 +2,11 @@
 <!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
 <repositories xmlns="" version="1.0">
   <repo quality="experimental" status="unofficial">
-    <name><![CDATA[qsuscs]]></name>
-    <description lang="en"><![CDATA[qsuscs’ ebuilds]]></description>
+    <name><![CDATA[qsx]]></name>
+    <description lang="en"><![CDATA[qsx’ ebuilds]]></description>
     <homepage>https://qsuscs.sculptor.uberspace.de/cgit/overlay.git</homepage>
     <owner type="person">
-      <email>thosch97@gmail.com</email>
+      <email>qsx@qsx.re</email>
       <name><![CDATA[Thomas Schneider]]></name>
     </owner>
     <source type="git">git://qsuscs.sculptor.uberspace.de:63913/overlay.git</source>
