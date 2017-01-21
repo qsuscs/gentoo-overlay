@@ -9,6 +9,7 @@
       <email>qsx@qsx.re</email>
       <name><![CDATA[Thomas Schneider]]></name>
     </owner>
+    <source type="git">https://github.com/qsuscs/gentoo-overlay</source>
     <source type="git">git://qsuscs.sculptor.uberspace.de:63913/overlay.git</source>
     <source type="git">https://qsuscs.sculptor.uberspace.de/cgit/overlay.git</source>
   </repo>
