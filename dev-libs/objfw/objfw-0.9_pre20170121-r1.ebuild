@@ -21,7 +21,7 @@ IUSE="doc"
 
 RDEPEND="|| ( sys-devel/clang sys-devel/gcc:*[objc] )"
 DEPEND="${RDEPEND}
-		app-doc/doxygen"
+		doc? ( app-doc/doxygen )"
 
 src_prepare() {
 	default
