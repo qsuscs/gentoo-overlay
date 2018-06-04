@@ -17,6 +17,11 @@ fi
 
 SLOT="0"
 
+src_prepare() {
+	default
+	echo "${PV}" > VERSION
+}
+
 src_install() {
 	emake PREFIX="${EPREFIX}/usr" DESTDIR="${D}" install
 	dodoc NEWS.md VIOLATIONS.md filter.example mlesskey.example
