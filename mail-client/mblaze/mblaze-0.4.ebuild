@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Copyright 2018 Thomas Schneider <qsx@qsx.re>
 # Distributed under the terms of the ISC License
 
@@ -17,13 +17,10 @@ fi
 
 SLOT="0"
 
-src_prepare() {
-	default
-	echo "${PV}" > VERSION
-}
-
 src_install() {
 	emake PREFIX="${EPREFIX}/usr" DESTDIR="${D}" install
 	dodoc NEWS.md VIOLATIONS.md filter.example mlesskey.example
 	dodoc -r contrib
+	dobin contrib/msearch
+	doman contrib/msearch.1
 }
