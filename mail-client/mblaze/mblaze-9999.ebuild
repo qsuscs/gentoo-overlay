@@ -15,12 +15,21 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
+IUSE="zsh-completion"
+
 SLOT="0"
 
 src_install() {
 	emake PREFIX="${EPREFIX}/usr" DESTDIR="${D}" install
 	dodoc NEWS.md VIOLATIONS.md filter.example mlesskey.example
-	dodoc -r contrib
+
 	dobin contrib/msearch
 	doman contrib/msearch.1
+	rm contrib/msearch{,.1} || die
+	if use zsh-completion; then
+		insinto /usr/share/zsh/site-functions/
+		doins contrib/_mblaze
+		rm contrib/_mblaze || die
+	fi
+	dodoc -r contrib
 }
