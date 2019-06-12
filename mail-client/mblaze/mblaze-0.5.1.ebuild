@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Copyright 2018 Thomas Schneider <qsx@qsx.re>
 # Distributed under the terms of the ISC License
 
