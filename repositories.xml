@@ -4,13 +4,11 @@
   <repo quality="experimental" status="unofficial">
     <name><![CDATA[qsx]]></name>
     <description lang="en"><![CDATA[qsx’ ebuilds]]></description>
-    <homepage>https://qsuscs.sculptor.uberspace.de/cgit/overlay.git</homepage>
+    <homepage>https://github.com/qsuscs/overlay</homepage>
     <owner type="person">
       <email>qsx@qsx.re</email>
       <name><![CDATA[Thomas Schneider]]></name>
     </owner>
     <source type="git">https://github.com/qsuscs/gentoo-overlay</source>
-    <source type="git">git://qsuscs.sculptor.uberspace.de:63913/overlay.git</source>
-    <source type="git">https://qsuscs.sculptor.uberspace.de/cgit/overlay.git</source>
   </repo>
 </repositories>
