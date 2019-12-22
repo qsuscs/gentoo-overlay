@@ -62,6 +62,7 @@ QA_MULTILIB_PATHS="usr/lib/dracut/.*"
 
 PATCHES=(
 	"${FILESDIR}"/0001-dracut.sh-Include-kernel-version-in-UEFI-image-metad.patch
+	"${FILESDIR}"/0002-dracut.sh-Find-efidir-reliably-using-lsblk.patch
 )
 
 src_configure() {

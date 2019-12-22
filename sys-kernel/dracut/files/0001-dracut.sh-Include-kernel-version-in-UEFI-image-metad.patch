@@ -1,7 +1,7 @@
 From aac1858716caaef94488222bc72d9b3bf9061650 Mon Sep 17 00:00:00 2001
 From: Thomas Schneider <qsx@chaotikum.eu>
 Date: Sun, 22 Dec 2019 15:52:38 +0100
-Subject: [PATCH] dracut.sh: Include kernel version in UEFI image metadata
+Subject: [PATCH 1/2] dracut.sh: Include kernel version in UEFI image metadata
 
 Signed-off-by: Thomas Schneider <qsx@chaotikum.eu>
 ---

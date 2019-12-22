@@ -1,0 +1,48 @@
+From d5324d1a21ca49296bd735c27044b939fc6021e1 Mon Sep 17 00:00:00 2001
+From: Thomas Schneider <qsx@chaotikum.eu>
+Date: Sun, 22 Dec 2019 17:06:48 +0100
+Subject: [PATCH 2/2] dracut.sh: Find $efidir reliably using lsblk
+
+Signed-off-by: Thomas Schneider <qsx@chaotikum.eu>
+---
+ dracut.sh | 23 ++++++++++++++++-------
+ 1 file changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/dracut.sh b/dracut.sh
+index 302ab9bf..4ff52248 100755
+--- a/dracut.sh
++++ b/dracut.sh
+@@ -793,14 +793,23 @@ if ! [[ $outfile ]]; then
+                        [[ $line =~ BUILD_ID\=* ]] && eval "$line" && echo "$BUILD_ID" && break; \
+                    done)
+         if [[ -z $dracutsysrootdir ]]; then
+-            if [[ -d /efi ]] && mountpoint -q /efi; then
+-                efidir=/efi/EFI
+-            else
+-                efidir=/boot/EFI
+-                if [[ -d $dracutsysrootdir/boot/efi/EFI ]]; then
+-                    efidir=/boot/efi/EFI
++            while read parttype mountpoint; do
++                if [[ -n "$mountpoint" ]]; then
++                    case $parttype in
++                        c12a7328-f81f-11d2-ba4b-00a0c93ec93b)
++                            # EFI System Partition
++                            lsblk_efidir="$mountpoint"
++                            ;;
++                        bc13c2ff-59e6-4262-a352-b275fd6f7172)
++                            # Freedesktop $BOOT
++                            lsblk_bootdir="$mountpoint"
++                            ;;
++                    esac
+                 fi
+-            fi
++            done < <(lsblk -o parttype,mountpoint -r)
++            [[ -n "$lsblk_efidir" ]] && efidir="$lsblk_efidir/EFI"
++            [[ -n "$lsblk_bootdir" ]] && efidir="$lsblk_bootdir/EFI"
++            [[ -z "$efidir" ]] && dfatal "No EFI directory found"
+         else
+             efidir=/boot/EFI
+             if [[ -d $dracutsysrootdir/boot/efi/EFI ]]; then
+-- 
+2.24.1
+
