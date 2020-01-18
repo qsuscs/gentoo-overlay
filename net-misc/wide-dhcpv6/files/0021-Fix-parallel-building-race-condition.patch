@@ -1,0 +1,25 @@
+From 89d826621f462e02f040ff3ae31e1ea4812a2c29 Mon Sep 17 00:00:00 2001
+From: Thomas Schneider <qsx@chaotikum.eu>
+Date: Sat, 18 Jan 2020 14:35:55 +0100
+Subject: [PATCH] Fix parallel building race condition
+
+---
+ Makefile.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index a0f1531..83f3609 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -74,7 +74,7 @@ dhcp6s:	$(SERVOBJS) $(LIBOBJS)
+ 	$(CC) $(LDFLAGS) -o dhcp6s $(SERVOBJS) $(LIBOBJS) $(LIBS) $(SERVLIBS)
+ dhcp6relay: $(RELAYOBJS) $(LIBOBJS)
+ 	$(CC) $(LDFLAGS) -o $@ $(RELAYOBJS) $(LIBOBJS) $(LIBS)
+-dhcp6ctl: $(CTLOBJS)
++dhcp6ctl: $(CTLOBJS) $(LIBOBJS)
+ 	$(CC) $(LDFLAGS) -o $@ $(CTLOBJS) $(LIBOBJS) $(LIBS)
+ 
+ cfparse.c: y.tab.h
+-- 
+2.25.0
+

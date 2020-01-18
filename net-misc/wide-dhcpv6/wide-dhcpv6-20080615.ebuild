@@ -38,6 +38,7 @@ PATCHES=(
 	"${FILESDIR}/0018-dhcpv6-ignore-advertise-messages-with-none-of-reques.patch"
 	"${FILESDIR}/0019-Server-should-not-bind-control-port-if-there-is-no-s.patch"
 	"${FILESDIR}/0020-Adding-option-to-randomize-interface-id.patch"
+	"${FILESDIR}/0021-Fix-parallel-building-race-condition.patch"
 )
 
 src_prepare() {
