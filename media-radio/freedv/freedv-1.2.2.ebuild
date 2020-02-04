@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Foundation
-# Copyright 2017 Thomas Schneider <qsx@qsx.re>
-# Distributed under the terms of the ISC License
+# Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
+# Licensed under the EUPL
 
 EAPI=6
 

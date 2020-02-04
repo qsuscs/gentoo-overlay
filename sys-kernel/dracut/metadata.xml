@@ -13,6 +13,10 @@
 		<email>floppym@gentoo.org</email>
 		<name>Mike Gilbert</name>
 	</maintainer>
+	<maintainer type="person">
+		<email>qsx@chaotikum.eu</email>
+		<name>Thomas Schneider</name>
+	</maintainer>
 	<longdescription lang="en">
 	Generic, modular initramfs generation tool that can be used across various
 	distributions.

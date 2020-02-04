@@ -1,5 +1,5 @@
 # Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
-# Distributed under the terms of the ISC License
+# Licensed under the EUPL
 
 EAPI=7
 
