@@ -18,6 +18,12 @@ IUSE="zsh-completion"
 
 SLOT="0"
 
+src_prepare() {
+	# Oh, Leah …
+	echo "${PV}" > VERSION
+	default
+}
+
 src_install() {
 	emake PREFIX="${EPREFIX}/usr" DESTDIR="${D}" install
 	dodoc NEWS.md VIOLATIONS.md filter.example mlesskey.example
