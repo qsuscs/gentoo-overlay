@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -56,7 +56,8 @@ BDEPEND="
 	virtual/pkgconfig
 	"
 
-DOCS=( AUTHORS HACKING NEWS README.* TODO )
+DOCS=( AUTHORS HACKING NEWS README README.generic README.kernel README.modules
+	README.testsuite TODO )
 
 QA_MULTILIB_PATHS="usr/lib/dracut/.*"
 
