@@ -1,0 +1,53 @@
+From f876308edb7733cd6a7a24bd15f927c4655ab8f7 Mon Sep 17 00:00:00 2001
+From: Masamichi Hosoda <trueroad@trueroad.jp>
+Date: Tue, 9 Apr 2019 22:01:00 +0900
+Subject: [PATCH] Fix memory leak
+
+---
+ src/poppler-cpp/poppler-cpp.cc | 4 +++-
+ src/poppler-cpp/poppler-cpp.hh | 3 ++-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/src/poppler-cpp/poppler-cpp.cc b/src/poppler-cpp/poppler-cpp.cc
+index 60acdcc..a790598 100644
+--- a/src/poppler-cpp/poppler-cpp.cc
++++ b/src/poppler-cpp/poppler-cpp.cc
+@@ -20,6 +20,7 @@
+ #include "poppler-cpp.hh"
+ 
+ #include <iostream>
++#include <memory>
+ #include <string>
+ #include <poppler-document.h>
+ #include <poppler-version.h>
+@@ -31,7 +32,8 @@ std::unique_ptr<output_pdfmark> create_output_pdfmark (void)
+ 
+ bool poppler_cpp::open (const std::string &pdf_filename)
+ {
+-  doc = poppler::document::load_from_file (pdf_filename);
++  doc = std::unique_ptr<poppler::document>
++    {poppler::document::load_from_file (pdf_filename)};
+ 
+   if (!doc)
+     {
+diff --git a/src/poppler-cpp/poppler-cpp.hh b/src/poppler-cpp/poppler-cpp.hh
+index 3f9e0f9..b077478 100644
+--- a/src/poppler-cpp/poppler-cpp.hh
++++ b/src/poppler-cpp/poppler-cpp.hh
+@@ -18,6 +18,7 @@
+ #ifndef INCLUDE_GUARD_POPPLER_CPP_HH
+ #define INCLUDE_GUARD_POPPLER_CPP_HH
+ 
++#include <memory>
+ #include <string>
+ #include <poppler-destination.h>
+ #include <poppler-document.h>
+@@ -36,7 +37,7 @@ private:
+   std::string walk (const std::string &name,
+                     const poppler::destination &dest);
+ 
+-  poppler::document *doc = nullptr;
++  std::unique_ptr<poppler::document> doc;
+ };
+ 
+ #endif // INCLUDE_GUARD_POPPLER_CPP_HH
