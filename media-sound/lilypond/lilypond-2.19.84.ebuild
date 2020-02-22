@@ -13,7 +13,7 @@ else
 	MAIN_VER=$(ver_cut 1-2)
 	SRC_URI="http://lilypond.org/download/sources/v${MAIN_VER}/${P}.tar.gz
 			 doc? ( http://lilypond.org/downloads/binaries/documentation/${P}-1.documentation.tar.bz2 )"
-	KEYWORDS="amd64 ~arm arm64 ~hppa x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~x86"
 fi
 
 DESCRIPTION="GNU Music Typesetter"
