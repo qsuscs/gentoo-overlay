@@ -12,7 +12,7 @@ if [[ "${PV}" = "9999" ]]; then
 else
 	MAIN_VER=$(ver_cut 1-2)
 	SRC_URI="http://lilypond.org/download/sources/v${MAIN_VER}/${P}.tar.gz
-			 doc? ( http://lilypond.org/downloads/binaries/documentation/${P}-1.documentation.tar.bz2 )"
+			 doc-bin? ( http://lilypond.org/downloads/binaries/documentation/${P}-1.documentation.tar.bz2 )"
 	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~x86"
 fi
 
@@ -21,7 +21,7 @@ HOMEPAGE="http://lilypond.org/"
 
 LICENSE="GPL-3 FDL-1.3"
 SLOT="0"
-IUSE="debug doc emacs guile2 profile vim-syntax"
+IUSE="debug doc-bin emacs guile2 profile vim-syntax"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND=">=app-text/ghostscript-gpl-8.15
@@ -137,7 +137,7 @@ src_install () {
 
 	python_fix_shebang "${ED}"
 
-	if use doc; then
+	if use doc-bin; then
 		pushd "${WORKDIR}/share" || die
 		doman man/*/*
 		# only the info pages, not the empty info directory and the broken symlink
