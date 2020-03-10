@@ -1,7 +1,7 @@
 # Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
-EAPI=6
+EAPI=7
 
 DESCRIPTION="Unix utilities to deal with Maildir"
 HOMEPAGE="https://github.com/leahneukirchen/mblaze"
@@ -18,9 +18,11 @@ IUSE="zsh-completion"
 
 SLOT="0"
 
+DOCS=(NEWS.md VIOLATIONS.md filter.example mlesskey.example)
+
 src_install() {
 	emake PREFIX="${EPREFIX}/usr" DESTDIR="${D}" install
-	dodoc NEWS.md VIOLATIONS.md filter.example mlesskey.example
+	einstalldocs
 
 	dobin contrib/msearch
 	doman contrib/msearch.1
