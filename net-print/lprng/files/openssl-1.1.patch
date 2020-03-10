@@ -1,0 +1,11 @@
+--- a/configure.ac.orig	2020-03-09 18:03:32.126732024 +0100
++++ b/configure.ac	2020-03-09 18:04:24.845609213 +0100
+@@ -954,7 +954,7 @@
+ 	AC_CHECK_LIB([crypto], [RC4_set_key], [true], [SSL_ENABLE=""])
+ fi
+ if test "$SSL_ENABLE" != ""; then
+-	AC_CHECK_LIB([ssl], [SSL_load_error_strings], [true], [SSL_ENABLE=""], [-lcrypto])
++	AC_CHECK_LIB([ssl], [OPENSSL_init_ssl], [true], [SSL_ENABLE=""], [-lcrypto])
+ fi
+ if test "$SSL_ENABLE" != ""; then
+ 	SSL_LDADD="-lssl -lcrypto"

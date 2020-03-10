@@ -1,0 +1,21 @@
+[Unit]
+Documentation=man:lpd(8)
+Description=LPRng printer spooler
+After=network-online.target
+After=remote-fs.target
+Wants=network-online.target
+
+[Service]
+RuntimeDirectory=lpd
+ExecStartPre=/usr/sbin/checkpc -f
+ExecStart=/usr/sbin/lpd -F
+SuccessExitStatus=15
+ExecReload=/bin/kill -HUP $MAINPID
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/spool/lpd
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

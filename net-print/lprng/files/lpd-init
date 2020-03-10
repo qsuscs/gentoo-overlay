@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+description="LPRng printer spooler"
+command="/usr/sbin/lpd"
+command_args_foreground="-F"
+pidfile="/var/run/lpd.515"
+
+depend() {
+	need net localmount
+	after bootmisc
+}
+
+checkconfig() {
+	ebegin "Checking config"
+	/usr/sbin/checkpc -f
+	eend $?
+}
