@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+  <email>qsx@chaotikum.eu</email>
+  <name>Thomas Schneider</name>
+</maintainer>
+<upstream>
+  <maintainer>
+    <email>e@80x24.org</email>
+    <name>Eric Wong</name>
+  </maintainer>
+</upstream>
+</pkgmetadata>
