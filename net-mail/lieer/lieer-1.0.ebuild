@@ -10,7 +10,7 @@ inherit distutils-r1
 DESCRIPTION="Fast email-fetching and two-way tag synchronization between notmuch and GMail"
 HOMEPAGE="https://lieer.gaute.vetsj.com/"
 
-SRC_URI="mirror://pypi/${PN::1}/${PN}/${P}.tar.gz"
+SRC_URI="https://github.com/gauteh/lieer/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64"
 
 LICENSE="GPL-3+"
