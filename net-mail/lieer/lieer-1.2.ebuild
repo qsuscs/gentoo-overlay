@@ -27,3 +27,7 @@ RDEPEND="
 	net-mail/notmuch[python,${PYTHON_USEDEP}]
 	${PYTHON_DEPS}
 "
+
+DOCS=(
+	"docs/index.md"
+)
