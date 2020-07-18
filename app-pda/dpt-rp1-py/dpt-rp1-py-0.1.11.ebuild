@@ -29,6 +29,7 @@ RDEPEND="
 	dev-python/anytree[${PYTHON_USEDEP}]
 	dev-python/fusepy[${PYTHON_USEDEP}]
 	dev-python/zeroconf[${PYTHON_USEDEP}]
+	dev-python/tqdm[${PYTHON_USEDEP}]
 	${PYTHON_DEPS}
 "
 DOCS=(README.md docs/linux-ethernet-over-usb.md samples)
