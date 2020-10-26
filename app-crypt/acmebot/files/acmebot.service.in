@@ -1,0 +1,22 @@
+[Unit]
+Description=Reconcile ACME certificates
+Documentation=file:/usr/share/doc/acmebot-@PV@/README.rst.bz2
+After=nss-lookup.target
+After=apache2.service nginx.service
+After=bind9.service knot.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/acmebot
+TimeoutStartSec=5min
+CapabilityBoundingSet=CAP_CHOWN
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ReadWritePaths=/etc/ssl
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictRealtime=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
