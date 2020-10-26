@@ -39,7 +39,7 @@ DEPEND=""
 src_prepare() {
 	default
 
-	sed -i 's:/var/local/acmebot:/var/lib/acmebot:' \
+	sed -i 's:/var/local:/var/lib:' \
 		acmebot acmebot.example.{json,yaml} \
 		|| die "sed failed"
 
