@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit toolchain-funcs
+
 DESCRIPTION="Unix utilities to deal with Maildir"
 HOMEPAGE="https://github.com/leahneukirchen/mblaze"
 LICENSE="public-domain MIT"
@@ -19,6 +21,10 @@ IUSE="zsh-completion"
 SLOT="0"
 
 DOCS=(NEWS.md VIOLATIONS.md filter.example mlesskey.example)
+
+src_configure() {
+	tc-export CC
+}
 
 src_install() {
 	emake PREFIX="${EPREFIX}/usr" DESTDIR="${D}" install
