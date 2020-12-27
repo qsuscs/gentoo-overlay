@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <use>
+    <flag name="g729">Add support for the G.729A audio codec</flag>
+  </use>
+  <upstream>
+    <remote-id type="github">LubosD/twinkle</remote-id>
+  </upstream>
+</pkgmetadata>
