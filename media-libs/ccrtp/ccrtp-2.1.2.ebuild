@@ -13,8 +13,8 @@ KEYWORDS="~amd64"
 IUSE="doc static-libs"
 
 RDEPEND="
-	dev-libs/libgcrypt:=
-	dev-libs/ucommon:=
+	dev-libs/libgcrypt:=[static-libs?]
+	dev-libs/ucommon:=[static-libs?]
 "
 
 DEPEND="${RDEPEND}"
