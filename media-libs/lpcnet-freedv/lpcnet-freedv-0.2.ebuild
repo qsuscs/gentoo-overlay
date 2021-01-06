@@ -22,7 +22,7 @@ REQUIRED_USE="
 "
 
 RDEPEND="
-	media-libs/codec2
+	>=media-libs/codec2-0.9.2
 "
 DEPEND="
 	${RDEPEND}
