@@ -53,7 +53,7 @@ src_install() {
 	insinto /etc/acmebot
 	doins acmebot.example.{json,yaml}
 
-	insinto /etc/logrotate
+	insinto /etc/logrotate.d
 	doins logrotate.d/acmebot
 
 	systemd_dounit acmebot.service "${FILESDIR}/acmebot.timer"
