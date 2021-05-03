@@ -3,6 +3,7 @@
 
 EAPI=7
 
+WX_GTK_VER="3.0-gtk3"
 inherit cmake wxwidgets
 
 DESCRIPTION="FreeDV is a Digital Voice mode for HF radio."
@@ -13,8 +14,6 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
-
-WX_GTK_VER="3.0-gtk3"
 
 RDEPEND="
 	media-libs/alsa-lib
