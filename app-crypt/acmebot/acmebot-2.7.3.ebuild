@@ -28,6 +28,7 @@ RDEPEND="
 	>=dev-python/pyparsing-2.2.0[${PYTHON_USEDEP}]
 	>=dev-python/packaging-16.8[${PYTHON_USEDEP}]
 	>=dev-python/pyopenssl-17.5.0[${PYTHON_USEDEP}]
+	<dev-python/pyopenssl-20.0.0
 	>=dev-python/pydns-3.1.0:3[${PYTHON_USEDEP}]
 	>=dev-python/cryptography-2.1.4[${PYTHON_USEDEP}]
 	>=dev-python/asn1crypto-0.24.0[${PYTHON_USEDEP}]
