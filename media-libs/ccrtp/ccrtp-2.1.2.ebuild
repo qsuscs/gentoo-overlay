@@ -1,4 +1,4 @@
-# Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2021 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
@@ -10,11 +10,11 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="doc static-libs"
+IUSE="doc"
 
 RDEPEND="
-	dev-libs/libgcrypt:=[static-libs?]
-	dev-libs/ucommon:=[static-libs?]
+	dev-libs/libgcrypt:=
+	dev-libs/ucommon:=
 "
 
 DEPEND="${RDEPEND}"
@@ -25,11 +25,11 @@ BDEPEND="
 
 src_configure() {
 	use doc || export DOXYGEN=/bin/true
-	econf $(use_enable static-libs static)
+	econf --disable-static
 }
 
 src_install() {
 	use doc && HTML_DOCS=( doc/html )
 	default
-	use static-libs || { find "${D}" -name '*.la' -delete || die; }
+	find "${D}" -name '*.la' -delete || die
 }
