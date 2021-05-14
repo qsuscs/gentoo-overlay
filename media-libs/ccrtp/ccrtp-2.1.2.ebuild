@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit flag-o-matic
+
 DESCRIPTION="GNU ccRTP is an implementation of RTP"
 HOMEPAGE="https://www.gnu.org/software/ccrtp/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
@@ -25,6 +27,7 @@ BDEPEND="
 
 src_configure() {
 	use doc || export DOXYGEN=/bin/true
+	append-cxxflags "-std=c++11"
 	econf --disable-static
 }
 
