@@ -58,6 +58,8 @@ src_compile() {
 	emake -j1 \
 		  "${makeflags[@]}" \
 		  SUBDIRS="lex m4"
+	# Yay, more race conditions.
+	emake "${makeflags[@]}" makefiles
 	emake "${makeflags[@]}"
 }
 
