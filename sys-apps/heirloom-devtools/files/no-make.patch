@@ -1,0 +1,10 @@
+--- a/makefile.orig	2021-05-17 15:07:15.410279029 +0200
++++ b/makefile	2021-05-17 15:07:29.744255614 +0200
+@@ -1,6 +1,5 @@
+ SUBDIRS = yacc lex m4 \
+-	sccs/cassi sccs/comobj sccs/mpwlib sccs/src sccs/help.d sccs/man \
+-	make/bsd make/makestate make/mksdmsi18n make/mksh make/vroot make/src
++	sccs/cassi sccs/comobj sccs/mpwlib sccs/src sccs/help.d sccs/man
+ 
+ MAKEFILES = $(SUBDIRS:=/Makefile)
+ 
