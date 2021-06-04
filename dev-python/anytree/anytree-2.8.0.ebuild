@@ -27,7 +27,7 @@ RDEPEND="
 	${PYTHON_DEPS}
 "
 
-distutils_enable_sphinx docs dev-python/sphinxcontrib-napoleon
+distutils_enable_sphinx docs
 distutils_enable_tests nose
 
 python_prepare_all() {
