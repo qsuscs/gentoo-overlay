@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <use>
+    <flag name="fuse">Enable FUSE image support</flag>
+    <flag name="extfs">Support ext2/3/4 file systems</flag>
+    <flag name="reiser4">Support Reiser4 file system</flag>
+    <flag name="nilfs2">Support NILFS2 file system</flag>
+    <flag name="ntfs">Support NTFS file system</flag>
+  </use>
+</pkgmetadata>
