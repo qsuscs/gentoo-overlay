@@ -1,0 +1,20 @@
+diff --git a/go.mod b/go.mod
+index b8841ce..f27bcc1 100644
+--- a/go.mod
++++ b/go.mod
+@@ -6,4 +6,5 @@ require (
+ 	github.com/mattn/go-isatty v0.0.4 // indirect
+ 	github.com/nwidger/jsoncolor v0.0.0-20170215171346-75a6de4340e5
+ 	github.com/pkg/errors v0.8.0
++	golang.org/x/sys v0.0.0-20210616094352-59db8d763f22 // indirect
+ )
+diff --git a/go.sum b/go.sum
+index 192ec59..8bd6848 100644
+--- a/go.sum
++++ b/go.sum
+@@ -8,3 +8,5 @@ github.com/nwidger/jsoncolor v0.0.0-20170215171346-75a6de4340e5 h1:d+C3xJdxZT7wN
+ github.com/nwidger/jsoncolor v0.0.0-20170215171346-75a6de4340e5/go.mod h1:GYFm0zZgTNeoK1QxuIofRDasy2ibmaJZhZLzwsMXUF4=
+ github.com/pkg/errors v0.8.0 h1:WdK/asTD0HN+q6hsWO3/vpuAkAr+tw6aNJNDFFf0+qw=
+ github.com/pkg/errors v0.8.0/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
++golang.org/x/sys v0.0.0-20210616094352-59db8d763f22 h1:RqytpXGR1iVNX7psjB3ff8y7sNFinVFvkx1c8SjBkio=
++golang.org/x/sys v0.0.0-20210616094352-59db8d763f22/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
