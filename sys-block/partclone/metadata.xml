@@ -12,4 +12,14 @@
     <flag name="nilfs2">Support NILFS2 file system</flag>
     <flag name="ntfs">Support NTFS file system</flag>
   </use>
+  <upstream>
+    <bugs-to>https://github.com/Thomas-Tsai/partclone/issues/new/choose</bugs-to>
+    <changelog>https://github.com/Thomas-Tsai/partclone/blob/master/ChangeLog</changelog>
+    <remote-id type="github">Thomas-Tsai/partclone</remote-id>
+    <doc>https://partclone.org/help/</doc>
+    <maintainer>
+      <name>Thomas Tsai</name>
+      <email>thomas@nchc.org.tw</email>
+    </maintainer>
+  </upstream>
 </pkgmetadata>

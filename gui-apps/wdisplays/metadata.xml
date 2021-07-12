@@ -7,5 +7,6 @@
   </maintainer>
   <upstream>
     <remote-id type="github">artizirk/wdisplays</remote-id>
+    <changelog>https://github.com/artizirk/wdisplays/releases</changelog>
   </upstream>
 </pkgmetadata>

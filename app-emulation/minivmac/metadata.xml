@@ -5,4 +5,9 @@
     <email>qsx@chaotikum.eu</email>
     <name>Thomas Schneider</name>
   </maintainer>
+  <upstream>
+    <doc>https://www.gryphel.com/c/minivmac/</doc>
+    <changelog>https://www.gryphel.com/c/minivmac/change/index.html</changelog>
+    <bugs-to>https://www.gryphel.com/c/feedback.html</bugs-to>
+  </upstream>
 </pkgmetadata>

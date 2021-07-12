@@ -5,4 +5,8 @@
     <email>qsx@chaotikum.eu</email>
     <name>Thomas Schneider</name>
   </maintainer>
+  <upstream>
+    <changelog>http://www.lprng.com/LPRng-CHANGES</changelog>
+    <remote-id type="sourceforge">lprng</remote-id>
+  </upstream>
 </pkgmetadata>

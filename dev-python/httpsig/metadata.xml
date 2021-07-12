@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-  <email>qsx@chaotikum.eu</email>
-  <name>Thomas Schneider</name>
-</maintainer>
-<upstream>
-  <maintainer>
-    <email>adam@movq.us</email>
-    <name>Adam Knight</name>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
   </maintainer>
-</upstream>
+  <upstream>
+    <maintainer>
+      <email>adam@movq.us</email>
+      <name>Adam Knight</name>
+    </maintainer>
+    <remote-id type="github">ahknight/httpsig</remote-id>
+    <remote-id type="pypi">httpsig</remote-id>
+    <bugs-to>https://github.com/ahknight/httpsig/issues/new/choose</bugs-to>
+  </upstream>
 </pkgmetadata>

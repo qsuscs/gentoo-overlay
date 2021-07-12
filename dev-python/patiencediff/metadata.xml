@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-  <email>qsx@chaotikum.eu</email>
-  <name>Thomas Schneider</name>
-</maintainer>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="pypi">patiencediff</remote-id>
+    <remote-id type="github">breezy-team/patiencediff</remote-id>
+    <maintainer>
+      <name>Breezy Developers</name>
+      <email>team@breezy-vcs.org</email>
+    </maintainer>
+  </upstream>
 </pkgmetadata>

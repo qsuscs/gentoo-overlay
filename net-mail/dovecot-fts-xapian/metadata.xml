@@ -6,6 +6,12 @@
     <name>Thomas Schneider</name>
   </maintainer>
   <upstream>
+    <maintainer>
+      <name>Joan Moreau</name>
+      <email>jom@grosjo.net</email>
+    </maintainer>
     <remote-id type="github">grosjo/fts-xapian</remote-id>
+    <changelog>https://github.com/grosjo/fts-xapian/releases</changelog>
+    <bugs-to>https://github.com/grosjo/fts-xapian/issues/new</bugs-to>
   </upstream>
 </pkgmetadata>

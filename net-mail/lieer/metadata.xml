@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-  <email>qsx@chaotikum.eu</email>
-  <name>Thomas Schneider</name>
-</maintainer>
-<upstream>
-  <maintainer>
-    <email>eg@gaute.vetsj.com</email>
-    <name>Gaute Hope</name>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
   </maintainer>
-</upstream>
+  <upstream>
+    <maintainer>
+      <email>eg@gaute.vetsj.com</email>
+      <name>Gaute Hope</name>
+    </maintainer>
+    <remote-id type="github">gauteh/lieer</remote-id>
+    <doc>https://github.com/gauteh/lieer/wiki</doc>
+    <bugs-to>https://github.com/gauteh/lieer/issues/new</bugs-to>
+  </upstream>
 </pkgmetadata>

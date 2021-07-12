@@ -8,4 +8,8 @@
   <use>
     <flag name="lprng-failsafe">Refuse options for compability with certain LPRng versions.</flag>
   </use>
+  <upstream>
+    <remote-id type="github">Orc/magicfilter</remote-id>
+    <changelog>http://www.pell.portland.or.us/~orc/Code/magicfilter/</changelog>
+  </upstream>
 </pkgmetadata>

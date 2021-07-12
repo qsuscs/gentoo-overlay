@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-  <email>qsx@chaotikum.eu</email>
-  <name>Thomas Schneider</name>
-</maintainer>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">termpaint/termpaint</remote-id>
+    <doc>https://termpaint.namepad.de/latest/</doc>
+    <bugs-to>https://github.com/termpaint/termpaint/issues/new/choose</bugs-to>
+    <maintainer>
+      <name>Martin Hostettler</name>
+      <email>textshell@uchuujin.de</email>
+    </maintainer>
+  </upstream>
 </pkgmetadata>

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-  <email>qsx@chaotikum.eu</email>
-  <name>Thomas Schneider</name>
-</maintainer>
-<upstream>
-  <remote-id type="github">plinss/acmebot</remote-id>
-</upstream>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">plinss/acmebot</remote-id>
+    <changelog>https://github.com/plinss/acmebot/tags</changelog>
+    <bugs-to>https://github.com/plinss/acmebot/issues/new/choose</bugs-to>
+    <maintainer>
+      <name>Peter Linss</name>
+      <email>peter@linss.com</email>
+    </maintainer>
+  </upstream>
 </pkgmetadata>

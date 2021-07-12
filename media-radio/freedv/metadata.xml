@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-	<email>qsx@chaotikum.eu</email>
-	<name>Thomas Schneider</name>
-</maintainer>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">drowe67/freedv-gui</remote-id>
+    <maintainer>
+      <name>David Rowe</name>
+      <email>david@rowetel.com</email>
+    </maintainer>
+    <bugs-to>https://github.com/drowe67/freedv-gui/issues/new</bugs-to>
+    <doc>https://htmlpreview.github.io/?https://github.com/drowe67/freedv-gui/blob/master/USER_MANUAL.html</doc>
+  </upstream>
 </pkgmetadata>

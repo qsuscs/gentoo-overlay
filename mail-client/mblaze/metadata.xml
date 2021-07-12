@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-	<email>qsx@chaotikum.eu</email>
-	<name>Thomas Schneider</name>
-</maintainer>
-<upstream>
-	<maintainer>
-		<email>leah@vuxu.org</email>
-		<name>Leah Neukirchen</name>
-	</maintainer>
-</upstream>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <maintainer>
+      <email>leah@vuxu.org</email>
+      <name>Leah Neukirchen</name>
+    </maintainer>
+    <remote-id type="github">leahneukirchen/mblaze</remote-id>
+    <changelog>https://github.com/leahneukirchen/mblaze/blob/master/NEWS.md</changelog>
+    <bugs-to>https://github.com/leahneukirchen/mblaze/issues/new/choose</bugs-to>
+  </upstream>
 </pkgmetadata>

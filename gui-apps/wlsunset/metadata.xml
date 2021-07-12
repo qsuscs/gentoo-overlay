@@ -5,4 +5,12 @@
     <email>qsx@chaotikum.eu</email>
     <name>Thomas Schneider</name>
   </maintainer>
+  <upstream>
+    <bugs-to>https://todo.sr.ht/~kennylevinsen/wlsunset</bugs-to>
+    <changelog>https://git.sr.ht/~kennylevinsen/wlsunset/refs</changelog>
+    <maintainer>
+      <name>Kenny Levinsen</name>
+      <email>kl@kl.wtf</email>
+    </maintainer>
+  </upstream>
 </pkgmetadata>
