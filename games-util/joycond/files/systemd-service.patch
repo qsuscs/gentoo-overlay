@@ -1,0 +1,20 @@
+diff --git a/systemd/joycond.service b/systemd/joycond.service
+index cc8e408..60c8d5a 100644
+--- a/systemd/joycond.service
++++ b/systemd/joycond.service
+@@ -1,14 +1,10 @@
+ [Unit]
+-Description=joycond
++Description=Userspace daemon to combine joy-cons from the hid-nintendo kernel driver
+ After=network.target
+ 
+ [Service]
+ ExecStart=/usr/bin/joycond
+-WorkingDirectory=/root
+-StandardOutput=inherit
+-StandardError=inherit
+ Restart=always
+-User=root
+ 
+ [Install]
+ WantedBy=multi-user.target
