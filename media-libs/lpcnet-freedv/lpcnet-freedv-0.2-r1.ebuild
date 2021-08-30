@@ -1,4 +1,4 @@
-# Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2021 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
@@ -29,6 +29,11 @@ DEPEND="
 "
 
 S="${WORKDIR}/LPCNet-${PV}"
+
+PATCHES=(
+	"${FILESDIR}/0001-lpcnet-API-function-to-return-git-hash.patch"
+	"${FILESDIR}/0002-Support-for-calling-from-C.patch"
+)
 
 src_configure () {
 	local mycmakeargs=(

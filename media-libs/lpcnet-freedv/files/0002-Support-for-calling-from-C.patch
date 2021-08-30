@@ -1,0 +1,36 @@
+From 773894fd826aa2c383b7cfb735b58f3484f51183 Mon Sep 17 00:00:00 2001
+From: David <david@rowetel.com>
+Date: Sun, 26 Jul 2020 08:10:30 +0930
+Subject: [PATCH] Support for calling from C++
+
+---
+ src/lpcnet_freedv.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/src/lpcnet_freedv.h b/src/lpcnet_freedv.h
+index 141a398..874f7cc 100644
+--- a/src/lpcnet_freedv.h
++++ b/src/lpcnet_freedv.h
+@@ -8,6 +8,10 @@
+ #ifndef __LPCNET_FREEDV__
+ #define __LPCNET_FREEDV__
+ 
++#ifdef __cplusplus
++  extern "C" {
++#endif
++
+ typedef struct LPCNetFreeDV LPCNetFreeDV;
+ 
+ LPCNetFreeDV* lpcnet_freedv_create(int direct_split);
+@@ -18,4 +22,8 @@ int lpcnet_bits_per_frame(LPCNetFreeDV *lf);
+ int lpcnet_samples_per_frame(LPCNetFreeDV *lf);
+ char *lpcnet_get_hash(void);
+ 
++#ifdef __cplusplus
++}
++#endif
++
+ #endif
+-- 
+2.31.1
+
