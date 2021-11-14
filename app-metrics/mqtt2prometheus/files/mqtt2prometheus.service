@@ -5,7 +5,7 @@ After=network.target
 Before=prometheus.service
 
 [Service]
-Enviroment=ARGS=
+Environment=ARGS=
 EnvironmentFile=-/etc/mqtt2prometheus/env
 LoadCredential=config.yaml:/etc/mqtt2prometheus/config.yaml
 ExecStart=mqtt2prometheus -config ${CREDENTIALS_DIRECTORY}/config.yaml $ARGS
