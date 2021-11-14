@@ -1,0 +1,18 @@
+[Unit]
+Description=MQTT to Prometheus gateway
+Wants=network.target
+After=network.target
+Before=prometheus.service
+
+[Service]
+Enviroment=ARGS=
+EnvironmentFile=-/etc/mqtt2prometheus/env
+LoadCredential=config.yaml:/etc/mqtt2prometheus/config.yaml
+ExecStart=mqtt2prometheus -config ${CREDENTIALS_DIRECTORY}/config.yaml $ARGS
+DynamicUser=yes
+ProtectHome=yes
+PrivateDevices=yes
+ProtectKernelLogs=yes
+
+[Install]
+WantedBy=multi-user.target
