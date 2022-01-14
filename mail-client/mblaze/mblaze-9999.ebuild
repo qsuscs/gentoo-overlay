@@ -1,4 +1,4 @@
-# Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2022 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
@@ -16,7 +16,7 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-IUSE="zsh-completion"
+IUSE=""
 
 SLOT="0"
 
@@ -33,10 +33,10 @@ src_install() {
 	dobin contrib/msearch
 	doman contrib/msearch.1
 	rm contrib/msearch{,.1} || die
-	if use zsh-completion; then
-		insinto /usr/share/zsh/site-functions/
-		doins contrib/_mblaze
-		rm contrib/_mblaze || die
-	fi
+
+	insinto /usr/share/zsh/site-functions/
+	doins contrib/_mblaze
+	rm contrib/_mblaze || die
+
 	dodoc -r contrib
 }
