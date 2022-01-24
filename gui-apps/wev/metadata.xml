@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <bugs-to>https://lists.sr.ht/~sircmpwn/public-inbox</bugs-to>
+    <changelog>https://git.sr.ht/~sircmpwn/wev/refs</changelog>
+    <maintainer>
+      <name>Drew DeVault</name>
+      <email>sir@cmpwn.com</email>
+    </maintainer>
+  </upstream>
+</pkgmetadata>
