@@ -6,7 +6,7 @@ EAPI=7
 inherit toolchain-funcs
 
 DESCRIPTION="A monitor of resources"
-HOMEPAGE="https://foo.example.org/"
+HOMEPAGE="https://github.com/aristocratos/btop"
 SRC_URI="https://github.com/aristocratos/btop/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Apache-2.0 MIT"
