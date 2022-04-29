@@ -1,0 +1,36 @@
+From 0be512fb705831b55020e1eaf86eedba0eae4a75 Mon Sep 17 00:00:00 2001
+From: Ronan Pigott <rpigott@berkeley.edu>
+Date: Tue, 7 Jul 2020 02:32:40 -0700
+Subject: [PATCH] remember to close and unmap buffer after drawing
+
+So when you open wev and wiggle it about a bit in an interactive
+resize it eats a bunch of memory before dieing of too many open files.
+It looks like it was just forgotten to clean up the wl_buffer when
+we're done. I think this is all that's needed.
+---
+ wev.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/wev.c b/wev.c
+index 67df920..8a90917 100644
+--- a/wev.c
++++ b/wev.c
+@@ -531,6 +531,7 @@ static struct wl_buffer *create_buffer(struct wev_state *state) {
+ 	struct wl_buffer *buffer = wl_shm_pool_create_buffer(pool, 0,
+ 			state->width, state->height, stride, WL_SHM_FORMAT_XRGB8888);
+ 	wl_shm_pool_destroy(pool);
++	close(fd);
+ 
+ 	for (int y = 0; y < state->height; ++y) {
+ 		for (int x = 0; x < state->width; ++x) {
+@@ -541,6 +542,7 @@ static struct wl_buffer *create_buffer(struct wev_state *state) {
+ 			}
+ 		}
+ 	}
++	munmap(data, size);
+ 
+ 	wl_buffer_add_listener(buffer, &wl_buffer_listener, NULL);
+ 
+-- 
+2.34.2
+

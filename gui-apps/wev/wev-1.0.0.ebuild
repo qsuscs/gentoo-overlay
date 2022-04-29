@@ -8,14 +8,10 @@ inherit toolchain-funcs
 DESCRIPTION="wayland event viewer"
 HOMEPAGE="https://git.sr.ht/~sircmpwn/wev"
 
-SRC_URI="
-	https://git.sr.ht/~sircmpwn/wev/archive/${PV}.tar.gz -> ${P}.tar.gz
-	https://git.sr.ht/~sircmpwn/wev/commit/0be512fb705831b55020e1eaf86eedba0eae4a75.patch
-	https://git.sr.ht/~sircmpwn/wev/commit/54de46d120396ead4dcbce0b52cf506c200380f5.patch
-"
+SRC_URI="https://git.sr.ht/~sircmpwn/wev/archive/${PV}.tar.gz -> ${P}.tar.gz"
 PATCHES=(
-	"${DISTDIR}/0be512fb705831b55020e1eaf86eedba0eae4a75.patch"
-	"${DISTDIR}/54de46d120396ead4dcbce0b52cf506c200380f5.patch"
+	"${FILESDIR}/0be512fb705831b55020e1eaf86eedba0eae4a75.patch"
+	"${FILESDIR}/54de46d120396ead4dcbce0b52cf506c200380f5.patch"
 )
 
 LICENSE="MIT"
