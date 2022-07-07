@@ -1,9 +1,9 @@
-# Copyright 2021 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2022 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{8..10} )
 DISTUTILS_USE_SETUPTOOLS=rdepend
 inherit distutils-r1
 
@@ -27,9 +27,12 @@ RDEPEND="
 	>=dev-python/urllib3-1.22[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	dev-python/anytree[${PYTHON_USEDEP}]
-	dev-python/fusepy[${PYTHON_USEDEP}]
 	dev-python/zeroconf[${PYTHON_USEDEP}]
 	dev-python/tqdm[${PYTHON_USEDEP}]
 	${PYTHON_DEPS}
 "
 DOCS=(README.md docs/linux-ethernet-over-usb.md samples)
+
+pkg_postinst() {
+	elog "dptmount requires fusepy, which is unmaintained and no longer in portage."
+}
