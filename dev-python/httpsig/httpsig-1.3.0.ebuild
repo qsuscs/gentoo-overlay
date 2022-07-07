@@ -1,9 +1,9 @@
-# Copyright 2021 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2022 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{8..10} )
 inherit distutils-r1
 
 DESCRIPTION="Secure HTTP request signing using the HTTP Signature draft specification"
