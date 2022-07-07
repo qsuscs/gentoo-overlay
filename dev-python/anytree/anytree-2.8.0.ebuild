@@ -1,9 +1,9 @@
-# Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2022 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6..9} )
+PYTHON_COMPAT=( python3_{8..10} )
 inherit distutils-r1
 
 DESCRIPTION="Powerful and Lightweight Python Tree Data Structure"
