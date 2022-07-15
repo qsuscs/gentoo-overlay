@@ -1,10 +1,10 @@
-# Copyright 2020 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2022 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8,9} )
-DISTUTILS_USE_SETUPTOOLS=manual
+PYTHON_COMPAT=( python3_{8..10} )
+DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1
 
 DESCRIPTION="Fast email-fetching and two-way tag synchronization between notmuch and GMail"
@@ -19,7 +19,6 @@ SLOT="0"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-BDEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
 RDEPEND="
 	dev-python/google-api-python-client[${PYTHON_USEDEP}]
 	dev-python/oauth2client[${PYTHON_USEDEP}]
