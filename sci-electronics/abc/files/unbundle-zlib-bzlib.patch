@@ -1,0 +1,148 @@
+diff --git a/Makefile b/Makefile
+index 80d21649..5851c7ef 100644
+--- a/Makefile
++++ b/Makefile
+@@ -22,7 +22,7 @@ MODULES := \
+ 	src/map/mapper src/map/mio src/map/super src/map/if \
+ 	src/map/amap src/map/cov src/map/scl src/map/mpm \
+ 	src/misc/extra src/misc/mvc src/misc/st src/misc/util src/misc/nm \
+-	src/misc/vec src/misc/hash src/misc/tim src/misc/bzlib src/misc/zlib \
++	src/misc/vec src/misc/hash src/misc/tim \
+ 	src/misc/mem src/misc/bar src/misc/bbl src/misc/parse \
+ 	src/opt/cut src/opt/fxu src/opt/fxch src/opt/rwr src/opt/mfs src/opt/sim \
+ 	src/opt/ret src/opt/fret src/opt/res src/opt/lpk src/opt/nwk src/opt/rwt \
+@@ -145,6 +145,9 @@ ifneq ($(findstring Darwin, $(shell uname)), Darwin)
+    LIBS += -lrt
+ endif
+ 
++LIBS += -lbz2
++LIBS += -lz
++
+ ifdef ABC_USE_LIBSTDCXX
+    LIBS += -lstdc++
+    $(info $(MSG_PREFIX)Using explicit -lstdc++)
+diff --git a/src/base/io/ioReadAiger.c b/src/base/io/ioReadAiger.c
+index 9cf41413..73f14873 100644
+--- a/src/base/io/ioReadAiger.c
++++ b/src/base/io/ioReadAiger.c
+@@ -26,8 +26,8 @@
+ #include <string.h>
+ #include <assert.h>
+ 
+-#include "misc/bzlib/bzlib.h"
+-#include "misc/zlib/zlib.h"
++#include <bzlib.h>
++#include <zlib.h>
+ #include "ioAbc.h"
+ 
+ ABC_NAMESPACE_IMPL_START
+diff --git a/src/base/io/ioReadBlifMv.c b/src/base/io/ioReadBlifMv.c
+index e5c6fe49..b98c6d30 100644
+--- a/src/base/io/ioReadBlifMv.c
++++ b/src/base/io/ioReadBlifMv.c
+@@ -18,8 +18,8 @@
+ 
+ ***********************************************************************/
+ 
+-#include "misc/zlib/zlib.h"
+-#include "misc/bzlib/bzlib.h"
++#include <zlib.h>
++#include <bzlib.h>
+ #include "base/abc/abc.h"
+ #include "misc/vec/vecPtr.h"
+ #include "ioAbc.h"
+diff --git a/src/base/io/ioWriteAiger.c b/src/base/io/ioWriteAiger.c
+index 0a68c7ee..d265104e 100644
+--- a/src/base/io/ioWriteAiger.c
++++ b/src/base/io/ioWriteAiger.c
+@@ -26,8 +26,8 @@
+ #include <string.h>
+ #include <assert.h>
+ 
+-#include "misc/bzlib/bzlib.h"
+-#include "misc/zlib/zlib.h"
++#include <bzlib.h>
++#include <zlib.h>
+ #include "ioAbc.h"
+ 
+ 
+diff --git a/src/sat/bsat2/MainSat.cpp b/src/sat/bsat2/MainSat.cpp
+index 1f61f9ee..ca52356e 100644
+--- a/src/sat/bsat2/MainSat.cpp
++++ b/src/sat/bsat2/MainSat.cpp
+@@ -21,7 +21,7 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
+ #include <errno.h>
+ 
+ #include <signal.h>
+-#include "misc/zlib/zlib.h"
++#include <zlib.h>
+ 
+ #include "System.h"
+ #include "ParseUtils.h"
+diff --git a/src/sat/bsat2/MainSimp.cpp b/src/sat/bsat2/MainSimp.cpp
+index 4a890921..0419bc2f 100644
+--- a/src/sat/bsat2/MainSimp.cpp
++++ b/src/sat/bsat2/MainSimp.cpp
+@@ -21,7 +21,7 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
+ #include <errno.h>
+ 
+ #include <signal.h>
+-#include "misc/zlib/zlib.h"
++#include <zlib.h>
+ 
+ #ifndef _WIN32
+ #include <sys/resource.h>
+diff --git a/src/sat/bsat2/ParseUtils.h b/src/sat/bsat2/ParseUtils.h
+index 8e0f9c89..d3071649 100644
+--- a/src/sat/bsat2/ParseUtils.h
++++ b/src/sat/bsat2/ParseUtils.h
+@@ -24,7 +24,7 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
+ #include <stdlib.h>
+ #include <stdio.h>
+ 
+-#include "misc/zlib/zlib.h"
++#include <zlib.h>
+ 
+ namespace Minisat {
+ 
+diff --git a/src/sat/cnf/cnfMan.c b/src/sat/cnf/cnfMan.c
+index 5a125ec3..54c582f3 100644
+--- a/src/sat/cnf/cnfMan.c
++++ b/src/sat/cnf/cnfMan.c
+@@ -21,7 +21,7 @@
+ #include "cnf.h"
+ #include "sat/bsat/satSolver.h"
+ #include "sat/bsat/satSolver2.h"
+-#include "misc/zlib/zlib.h"
++#include <zlib.h>
+ 
+ ABC_NAMESPACE_IMPL_START
+ 
+diff --git a/src/sat/glucose/ParseUtils.h b/src/sat/glucose/ParseUtils.h
+index a3f25a62..fa3f8e10 100644
+--- a/src/sat/glucose/ParseUtils.h
++++ b/src/sat/glucose/ParseUtils.h
+@@ -25,7 +25,8 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
+ #include <stdio.h>
+ #include <math.h>
+ 
+-#include "misc/zlib/zlib.h"
++#include "misc/util/abc_global.h"
++#include <zlib.h>
+ 
+ ABC_NAMESPACE_CXX_HEADER_START
+ 
+diff --git a/src/sat/glucose2/ParseUtils.h b/src/sat/glucose2/ParseUtils.h
+index 54a139b1..2d59f7af 100644
+--- a/src/sat/glucose2/ParseUtils.h
++++ b/src/sat/glucose2/ParseUtils.h
+@@ -25,7 +25,8 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
+ #include <stdio.h>
+ #include <math.h>
+ 
+-#include "misc/zlib/zlib.h"
++#include "misc/util/abc_global.h"
++#include <zlib.h>
+ 
+ ABC_NAMESPACE_CXX_HEADER_START
+ 
