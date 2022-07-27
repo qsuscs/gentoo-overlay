@@ -65,6 +65,8 @@ src_install() {
 	for i in icebox_*.py; do
 		python_newscript "${i}" "${i%.py}"
 	done
+	insinto /usr/share/icebox
+	doins chipdb-*.txt
 	popd
 
 	DOCS=( README examples )
