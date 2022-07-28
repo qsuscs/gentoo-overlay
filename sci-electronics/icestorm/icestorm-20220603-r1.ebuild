@@ -32,7 +32,7 @@ RDEPEND="
 	${PYTHON_DEPS}
 "
 BDEPEND="
-	iceprog? ( virtual/pkg-config )
+	iceprog? ( virtual/pkgconfig )
 	${PYTHON_DEPS}
 "
 
