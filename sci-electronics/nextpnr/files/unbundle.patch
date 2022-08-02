@@ -1,0 +1,82 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index fcbbbb13..a419802b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -204,7 +204,7 @@ if (NOT DEFINED CURRENT_GIT_VERSION)
+ endif()
+ 
+ if (BUILD_TESTS)
+-    add_subdirectory(3rdparty/googletest/googletest ${CMAKE_CURRENT_BINARY_DIR}/generated/3rdparty/googletest EXCLUDE_FROM_ALL)
++    find_package(GTest REQUIRED)
+     enable_testing()
+ endif()
+ 
+@@ -216,7 +216,11 @@ configure_file(
+     ${CMAKE_CURRENT_SOURCE_DIR}/common/version.h.in ${CMAKE_CURRENT_BINARY_DIR}/generated/version.h
+ )
+ 
+-include_directories(common/ json/ frontend/ 3rdparty/json11/ 3rdparty/pybind11/include ${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
++if(BUILD_PYTHON)
++  find_package(pybind11 CONFIG REQUIRED)
++endif()
++
++include_directories(common/ json/ frontend/ ${pybind11_INCLUDE_DIR} ${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
+ 
+ if(BUILD_HEAP)
+     find_package (Eigen3 REQUIRED NO_MODULE)
+@@ -227,10 +231,9 @@ endif()
+ 
+ aux_source_directory(common/ COMMON_SRC_FILES)
+ aux_source_directory(json/ JSON_PARSER_FILES)
+-aux_source_directory(3rdparty/json11 EXT_JSON11_FILES)
+ aux_source_directory(frontend/ FRONTEND_FILES)
+ 
+-set(COMMON_FILES ${COMMON_SRC_FILES} ${EXT_JSON11_FILES} ${JSON_PARSER_FILES} ${FRONTEND_FILES})
++set(COMMON_FILES ${COMMON_SRC_FILES} ${JSON_PARSER_FILES} ${FRONTEND_FILES})
+ if( NOT CMAKE_BUILD_TYPE )
+     set(CMAKE_BUILD_TYPE Release)
+ endif()
+@@ -260,6 +263,8 @@ if(TBB_FOUND)
+     list(APPEND EXTRA_LIB_DEPS TBB::tbb)
+ endif()
+ 
++list(APPEND EXTRA_LIB_DEPS json11)
++
+ foreach (family ${ARCH})
+     message(STATUS "Configuring architecture: ${family}")
+     string(TOUPPER ${family} ufamily)
+@@ -297,7 +302,7 @@ foreach (family ${ARCH})
+ 
+         add_executable(${PROGRAM_PREFIX}nextpnr-${family}-test ${${ufamily}_TEST_FILES}
+                 ${COMMON_FILES} ${${ufamily}_FILES} ${GUI_TEST_FILES})
+-        target_link_libraries(${PROGRAM_PREFIX}nextpnr-${family}-test PRIVATE gtest_main)
++        target_link_libraries(${PROGRAM_PREFIX}nextpnr-${family}-test PRIVATE GTest::gtest_main)
+         add_sanitizers(${PROGRAM_PREFIX}nextpnr-${family}-test)
+ 
+         add_test(${family}-test ${CMAKE_CURRENT_BINARY_DIR}/nextpnr-${family}-test)
+diff --git a/common/report.cc b/common/report.cc
+index 98ff14fb..8a92cb3c 100644
+--- a/common/report.cc
++++ b/common/report.cc
+@@ -17,7 +17,7 @@
+  *
+  */
+ 
+-#include "json11.hpp"
++#include <json11.hpp>
+ #include "nextpnr.h"
+ 
+ NEXTPNR_NAMESPACE_BEGIN
+diff --git a/frontend/json_frontend.cc b/frontend/json_frontend.cc
+index f2fb3ac0..5761aac1 100644
+--- a/frontend/json_frontend.cc
++++ b/frontend/json_frontend.cc
+@@ -19,7 +19,7 @@
+ 
+ #include "json_frontend.h"
+ #include "frontend_base.h"
+-#include "json11.hpp"
++#include <json11.hpp>
+ #include "log.h"
+ #include "nextpnr.h"
+ 
