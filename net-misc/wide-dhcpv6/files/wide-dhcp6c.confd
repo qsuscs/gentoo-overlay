@@ -1,0 +1,2 @@
+# Which interface(s) to query, space separated
+#INTERFACES="eth0"

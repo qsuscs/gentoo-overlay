@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools systemd
+inherit autotools prefix systemd
 
 DESCRIPTION="WIDE project DHCPv6 client and server"
 HOMEPAGE="https://wide-dhcpv6.sourceforge.net/"
@@ -39,10 +39,14 @@ PATCHES=(
 	"${FILESDIR}/0019-Server-should-not-bind-control-port-if-there-is-no-s.patch"
 	"${FILESDIR}/0020-Adding-option-to-randomize-interface-id.patch"
 	"${FILESDIR}/0021-Fix-parallel-building-race-condition.patch"
+	"${FILESDIR}/0021-Make-sla-len-config-optional.patch"
+	"${FILESDIR}/0022-Make-sla-id-config-optional.patch"
 )
 
 src_prepare() {
 	rm configure cfparse.c cftoken.c y.tab.h || die
+	cp "${FILESDIR}/wide-dhcp6c.init" . || die
+	hprefixify wide-dhcp6c.init
 	default
 	eautoreconf
 }
@@ -63,6 +67,8 @@ src_install() {
 	dodoc "${FILESDIR}/README.gentoo"
 	systemd_newunit "${FILESDIR}/dhcp6c-AT.service" "dhcp6c@.service"
 	systemd_newunit "${FILESDIR}/dhcp6s-AT.service" "dhcp6s@.service"
+	newconfd "${FILESDIR}/wide-dhcp6c.confd" wide-dhcp6c
+	newinitd wide-dhcp6c.init wide-dhcp6c
 	einstalldocs
 }
 
