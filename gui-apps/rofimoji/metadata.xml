@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <bugs-to>https://github.com/fdw/rofimoji/issues/new/choose</bugs-to>
+    <changelog>https://github.com/fdw/rofimoji/releases</changelog>
+    <remote-id type="github">fdw/rofimoji</remote-id>
+  </upstream>
+</pkgmetadata>
