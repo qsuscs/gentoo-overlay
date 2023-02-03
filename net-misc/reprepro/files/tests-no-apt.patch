@@ -1,0 +1,15 @@
+In this test, reprepro tries to call /usr/lib/apt/methods/file, but apt isn’t
+packaged here.
+
+diff --recursive -u reprepro-5.4.1.orig/tests/multiversion.sh reprepro-5.4.1/tests/multiversion.sh
+--- reprepro-5.4.1.orig/tests/multiversion.sh	2022-08-17 17:32:44.000000000 +0200
++++ reprepro-5.4.1/tests/multiversion.sh	2023-02-03 16:04:43.835772017 +0100
+@@ -247,7 +247,7 @@
+ buster|main|${ARCH}: hello 2.9-2+deb8u1" "$($REPREPRO -b $REPO list buster)"
+ }
+ 
+-test_update_packages() {
++NO_test_update_packages() {
+ 	# Test case for https://github.com/profitbricks/reprepro/issues/6
+ 	local upstream_repo
+ 	upstream_repo="${0%/*}/upstreamrepo"

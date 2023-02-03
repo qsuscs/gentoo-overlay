@@ -13,10 +13,13 @@
     <email>qsx@chaotikum.eu</email>
     <name>Thomas Schneider</name>
   </maintainer>
+  <use>
+    <flag name="libarchive">Use libarchive for reading package files</flag>
+  </use>
   <upstream>
     <maintainer>
-      <name>Bernhard R. Link</name>
-      <email>brlink@debian.org</email>
+      <name>Bastian Germann</name>
+      <email>bage@debian.org</email>
     </maintainer>
   </upstream>
 </pkgmetadata>

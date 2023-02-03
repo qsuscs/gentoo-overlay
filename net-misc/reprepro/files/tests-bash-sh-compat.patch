@@ -1,0 +1,14 @@
+This gets called with a 'a\nb' argument, which works as intended in dash
+(debian’s /bin/sh), but not in bash.
+
+diff --recursive -u reprepro-5.4.1.orig/tests/shunit2-helper-functions.sh reprepro-5.4.1/tests/shunit2-helper-functions.sh
+--- reprepro-5.4.1.orig/tests/shunit2-helper-functions.sh	2022-08-17 17:32:44.000000000 +0200
++++ reprepro-5.4.1/tests/shunit2-helper-functions.sh	2023-02-03 16:00:25.722963133 +0100
+@@ -42,7 +42,7 @@
+ Tracking: all
+ EOF
+ 	if test -n "${2-}"; then
+-		echo "$2" >> $REPO/conf/distributions
++		printf "$2\n" >> $REPO/conf/distributions
+ 	fi
+ }

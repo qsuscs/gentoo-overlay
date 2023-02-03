@@ -1,0 +1,13 @@
+--- reprepro-5.4.1.orig/uncompression.c	2022-08-17 17:32:44.000000000 +0200
++++ reprepro-5.4.1/uncompression.c	2023-02-03 16:37:12.705793321 +0100
+@@ -1050,8 +1050,8 @@
+ 		/* 32 means accept zlib and gz header
+ 		 * 15 means accept any windowSize */
+ 		ret = inflateInit2(&f->uncompress.gz, 32 + 15);
+-		if (ret != BZ_OK) {
+-			if (ret == BZ_MEM_ERROR) {
++		if (ret != Z_OK) {
++			if (ret == Z_MEM_ERROR) {
+ 				f->error = ENOMEM;
+ 				return false;
+ 			}
