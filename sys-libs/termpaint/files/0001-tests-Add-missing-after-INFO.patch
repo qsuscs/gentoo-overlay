@@ -1,0 +1,44 @@
+From 38829a27511091a7dc0890b0be2d33998ba9d78e Mon Sep 17 00:00:00 2001
+From: Martin Hostettler <textshell@uchuujin.de>
+Date: Wed, 8 Feb 2023 21:50:18 +0100
+Subject: [PATCH 1/4] tests: Add missing ';' after INFO(...)
+
+This somehow worked with catch2 2.x but breaks with catch2 3.x
+---
+ tests/measurement_tests.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/tests/measurement_tests.cpp b/tests/measurement_tests.cpp
+index cc0a18f..8ccb5c0 100644
+--- a/tests/measurement_tests.cpp
++++ b/tests/measurement_tests.cpp
+@@ -385,7 +385,7 @@ TEST_CASE( "Measurements for single clusters", "[measurement]") {
+         auto partition = GENERATE_COPY(partitions(testCase.str));
+         INFO(testCase.desc);
+         INFO("Partition: " << printPartition(partition));
+-        INFO("Checking for string " << testCase.str)
++        INFO("Checking for string " << testCase.str);
+         result = measureOneCluster(partition);
+         CHECK(result.limitReached == true);
+         CHECK(result.columns == testCase.columns);
+@@ -394,7 +394,7 @@ TEST_CASE( "Measurements for single clusters", "[measurement]") {
+     }
+     SECTION("parse as utf16") {
+         INFO(testCase.desc);
+-        INFO("Checking for string " << testCase.str)
++        INFO("Checking for string " << testCase.str);
+         std::u16string utf16 = toUtf16(testCase.str);
+         auto partition = GENERATE_COPY(partitions(utf16));
+         INFO("Partition: " << printPartition(partition));
+@@ -406,7 +406,7 @@ TEST_CASE( "Measurements for single clusters", "[measurement]") {
+     }
+     SECTION("parse as utf32") {
+         INFO(testCase.desc);
+-        INFO("Checking for string " << testCase.str)
++        INFO("Checking for string " << testCase.str);
+         auto partition = GENERATE_COPY(partitions(utf32));
+         INFO("Partition: " << printPartition(partition));
+         result = measureOneCluster(partition);
+-- 
+2.39.1
+

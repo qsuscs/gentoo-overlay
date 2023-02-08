@@ -4,12 +4,14 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{9..11} )
-EGIT_REPO_URI="https://github.com/termpaint/termpaint"
-inherit git-r3 meson python-any-r1
+inherit meson python-any-r1
 
 DESCRIPTION="low level terminal interface library"
 HOMEPAGE="https://github.com/termpaint/termpaint"
 LICENSE="Boost-1.0"
+SRC_URI="https://github.com/termpaint/termpaint/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+
+KEYWORDS="~amd64"
 
 SLOT="0"
 
@@ -27,6 +29,9 @@ DEPEND="
 "
 
 PATCHES=(
+	"${FILESDIR}/"0001-tests-Add-missing-after-INFO.patch
+	"${FILESDIR}/"0002-termpaint_input-Add-missing-void-in-parameter-list.patch
+	"${FILESDIR}/"0003-tests-Add-support-for-catch2-version-3.x.patch
 	"${FILESDIR}/"0004-meson.build-Guard-tests-and-maintainer-targets-behin.patch
 )
 

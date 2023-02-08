@@ -1,0 +1,212 @@
+From e572f67e2eee0f70ab9e9d458317882a5a60ec04 Mon Sep 17 00:00:00 2001
+From: Thomas Schneider <qsx@chaotikum.eu>
+Date: Wed, 8 Feb 2023 23:50:45 +0100
+Subject: [PATCH 4/4] meson.build: Guard tests and maintainer targets behind
+ options
+
+This way, the Gentoo package (and possible future ones) can avoid unnecessary
+dependencies.
+---
+ meson.build       | 125 +++++++++++++++++++++++-----------------------
+ meson_options.txt |   2 +
+ 2 files changed, 64 insertions(+), 63 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index c335a49..f5517e6 100644
+--- a/meson.build
++++ b/meson.build
+@@ -200,88 +200,74 @@ inputevents_files = [
+ executable('inputevents', inputevents_files, link_with: [main_lib], kwargs: tools_kwargs)
+ 
+ #ide:editable-filelist
+-attrdemo_files = [
+-  'demo/attrs.c',
++detect_files = [
++  'demo/detect.c',
+ ]
+ 
+-executable('attrdemo', attrdemo_files, link_with: [main_lib])
++executable('detect', detect_files, link_with: [main_lib], kwargs: tools_kwargs)
+ 
++#ide:editable-filelist
++attrdemo_files = [
++  'demo/attrs.c',
++]
+ 
+ #ide:editable-filelist
+ chardemo_files = [
+   'demo/chars.c',
+ ]
+ 
+-executable('chardemo', chardemo_files, link_with: [main_lib])
+-
+ #ide:editable-filelist
+ shuffledemo_files = [
+   'demo/shuffle.c',
+ ]
+ 
+-executable('shuffle', shuffledemo_files, link_with: [main_lib])
+-
+ #ide:editable-filelist
+ lifedemo_files = [
+   'demo/life.c',
+ ]
+ 
+-executable('life', lifedemo_files, link_with: [main_lib])
+-
+ #ide:editable-filelist
+ textwrapdemo_files = [
+   'demo/textwrap.c',
+ ]
+ 
+-executable('textwrap', textwrapdemo_files, link_with: [main_lib])
+-
+-#ide:editable-filelist
+-detect_files = [
+-  'demo/detect.c',
+-]
+-
+-executable('detect', detect_files, link_with: [main_lib], kwargs: tools_kwargs)
+-
+ #ide:editable-filelist
+ keyboardcollector_files = [
+   'tools/keyboardcollector.cpp',
+ ]
+ 
++if get_option('maintainer-mode')
++  executable('attrdemo', attrdemo_files, link_with: [main_lib])
++  executable('chardemo', chardemo_files, link_with: [main_lib])
++  executable('shuffle', shuffledemo_files, link_with: [main_lib])
++  executable('life', lifedemo_files, link_with: [main_lib])
++  executable('textwrap', textwrapdemo_files, link_with: [main_lib])
++
++  executable('keyboardcollector', keyboardcollector_files, link_with: [main_lib], dependencies: [picojson_dep])
++  if get_option('ssh')
++    executable('keyboardcollector-ssh', 'tools/keyboardcollector.cpp', 'tools/SshServer.cpp',
++      cpp_args: ['-DUSE_SSH'],
++      link_with: [main_lib],
++      dependencies: dependency('libssh'))
++  endif
+ 
+-executable('keyboardcollector', keyboardcollector_files, link_with: [main_lib], dependencies: [picojson_dep])
+-if get_option('ssh')
+-  executable('keyboardcollector-ssh', 'tools/keyboardcollector.cpp', 'tools/SshServer.cpp',
+-    cpp_args: ['-DUSE_SSH'],
+-    link_with: [main_lib],
+-    dependencies: dependency('libssh'))
+-endif
++  docopt_dep = dependency('docopt', required : get_option('system-docopt'))
++  if not docopt_dep.found()
++    docopt_lib = static_library('libdocopt', 'third-party/docopt/docopt.cpp', cpp_args: ['-Wno-unknown-pragmas'])
++    docopt_dep = declare_dependency(link_with: docopt_lib, compile_args: ['-DBUNDLED_DOCOPT'])
++  endif
+ 
+-docopt_dep = dependency('docopt', required : get_option('system-docopt'))
+-if not docopt_dep.found()
+-  docopt_lib = static_library('libdocopt', 'third-party/docopt/docopt.cpp', cpp_args: ['-Wno-unknown-pragmas'])
+-  docopt_dep = declare_dependency(link_with: docopt_lib, compile_args: ['-DBUNDLED_DOCOPT'])
+-endif
++  fmt_dep = dependency('fmt', required : get_option('system-fmt'))
++  if not fmt_dep.found()
++    fmt_lib = static_library('libfmt', 'third-party/format.cc')
++    fmt_dep = declare_dependency(link_with: fmt_lib, compile_args: ['-DBUNDLED_FMT'])
++  endif
+ 
+-fmt_dep = dependency('fmt', required : get_option('system-fmt'))
+-if not fmt_dep.found()
+-  fmt_lib = static_library('libfmt', 'third-party/format.cc')
+-  fmt_dep = declare_dependency(link_with: fmt_lib, compile_args: ['-DBUNDLED_FMT'])
++  executable('mcheck', 'tools/mcheck.cpp', link_with: [main_lib], dependencies: [docopt_dep, fmt_dep, picojson_dep])
+ endif
+ 
+-executable('mcheck', 'tools/mcheck.cpp', link_with: [main_lib], dependencies: [docopt_dep, fmt_dep, picojson_dep])
+ executable('termquery', 'termquery.cpp', link_with: [main_lib])
+ 
+-catch2_dep = dependency('catch2', required : get_option('system-catch2'))
+-if not catch2_dep.found()
+-  catch2_dep = declare_dependency(compile_args: ['-DBUNDLED_CATCH2'])
+-else
+-  if catch2_dep.version().version_compare('>=3.0')
+-    catch2_dep = [catch2_dep, declare_dependency(compile_args: ['-DCATCH3'])]
+-  endif
+-endif
+-
+-testlib = static_library('testlib', 'tests/catch_main.cpp', dependencies: [catch2_dep])
+-
+ #ide:editable-filelist
+ test_files = [
+   'tests/fingerprintingtests.cpp',
+@@ -293,30 +279,43 @@ test_files = [
+   'tests/utf8_tests.cpp',
+ ]
+ 
+-testtermpaint = executable('testtermpaint', test_files,
+-  link_with: [main_lib, testlib],
+-  cpp_args: ['-fno-inline', silence_warnings],
+-  dependencies: [catch2_dep, picojson_dep])
+-
+-testtermpaint_env = environment()
+-testtermpaint_env.set('TERMPAINT_TEST_DATA', meson.current_source_dir() / ('tests'))
+-test('testtermpaint', testtermpaint, timeout: 1200, env: testtermpaint_env)
+-
+ #ide:editable-filelist
+ test_terminaloutput_files = [
+   'tests/terminaloutput.cpp',
+   'tests/terminaloutput_main.cpp',
+ ]
+ 
+-testtermpaint_terminaloutput = executable('testtermpaint_terminaloutput',
+-  test_terminaloutput_files,
+-  link_with: [main_lib],
+-  dependencies: [dependency('threads'), catch2_dep, picojson_dep],
+-  cpp_args: ['-fno-inline', silence_warnings])
++if get_option('build-tests')
++  catch2_dep = dependency('catch2', required : get_option('system-catch2'))
++  if not catch2_dep.found()
++    catch2_dep = declare_dependency(compile_args: ['-DBUNDLED_CATCH2'])
++  else
++    if catch2_dep.version().version_compare('>=3.0')
++      catch2_dep = [catch2_dep, declare_dependency(compile_args: ['-DCATCH3'])]
++    endif
++  endif
++
++  testlib = static_library('testlib', 'tests/catch_main.cpp', dependencies: [catch2_dep])
+ 
+-# currently can't be run as meson registered test, because it needs a path to a terminal test driver
+-#test('testtermpaint_terminaloutput', testtermpaint_terminaloutput,
+-#  timeout: 300)
++  testtermpaint = executable('testtermpaint', test_files,
++    link_with: [main_lib, testlib],
++    cpp_args: ['-fno-inline', silence_warnings],
++    dependencies: [catch2_dep, picojson_dep])
++
++  testtermpaint_env = environment()
++  testtermpaint_env.set('TERMPAINT_TEST_DATA', meson.current_source_dir() / ('tests'))
++  test('testtermpaint', testtermpaint, timeout: 1200, env: testtermpaint_env)
++
++  testtermpaint_terminaloutput = executable('testtermpaint_terminaloutput',
++    test_terminaloutput_files,
++    link_with: [main_lib],
++    dependencies: [dependency('threads'), catch2_dep, picojson_dep],
++    cpp_args: ['-fno-inline', silence_warnings])
++
++  # currently can't be run as meson registered test, because it needs a path to a terminal test driver
++  #test('testtermpaint_terminaloutput', testtermpaint_terminaloutput,
++  #  timeout: 300)
++endif
+ 
+ # doc snippets
+ executable('doc-getting-started', 'doc/getting-started.c', link_with: [main_lib])
+diff --git a/meson_options.txt b/meson_options.txt
+index 8b747c3..10b29d1 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -12,3 +12,5 @@ option('system-picojson', type : 'feature', value : 'disabled')
+ option('errorlog', type : 'boolean', value : false)
+ # samples etc
+ option('ssh', type : 'boolean', value : false)
++option('maintainer-mode', type : 'boolean', value : true)
++option('build-tests', type : 'boolean', value : true)
+-- 
+2.39.1
+

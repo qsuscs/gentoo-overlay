@@ -1,0 +1,251 @@
+From dc293554b745b3f010445e9445e620399f8ee2f7 Mon Sep 17 00:00:00 2001
+From: Martin Hostettler <textshell@uchuujin.de>
+Date: Wed, 8 Feb 2023 22:24:20 +0100
+Subject: [PATCH 3/4] tests: Add support for catch2 version 3.x
+
+---
+ meson.build                   |  4 ++++
+ tests/catch_main.cpp          | 10 +++++++++-
+ tests/fingerprintingtests.cpp |  4 ++++
+ tests/hashtest.cpp            |  4 ++++
+ tests/input_tests.cpp         |  4 ++++
+ tests/measurement_tests.cpp   |  8 ++++++++
+ tests/surface.cpp             |  4 ++++
+ tests/terminal_misc.cpp       |  4 ++++
+ tests/terminaloutput.cpp      |  4 ++++
+ tests/terminaloutput_main.cpp |  8 ++++++++
+ tests/testhelper.h            |  4 ++++
+ tests/utf8_tests.cpp          |  6 +++++-
+ 12 files changed, 62 insertions(+), 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index e44904b..c335a49 100644
+--- a/meson.build
++++ b/meson.build
+@@ -274,6 +274,10 @@ executable('termquery', 'termquery.cpp', link_with: [main_lib])
+ catch2_dep = dependency('catch2', required : get_option('system-catch2'))
+ if not catch2_dep.found()
+   catch2_dep = declare_dependency(compile_args: ['-DBUNDLED_CATCH2'])
++else
++  if catch2_dep.version().version_compare('>=3.0')
++    catch2_dep = [catch2_dep, declare_dependency(compile_args: ['-DCATCH3'])]
++  endif
+ endif
+ 
+ testlib = static_library('testlib', 'tests/catch_main.cpp', dependencies: [catch2_dep])
+diff --git a/tests/catch_main.cpp b/tests/catch_main.cpp
+index a539b78..8e32b79 100644
+--- a/tests/catch_main.cpp
++++ b/tests/catch_main.cpp
+@@ -1,7 +1,15 @@
+ // SPDX-License-Identifier: BSL-1.0
+-#define CATCH_CONFIG_MAIN
++#define CATCH_CONFIG_RUNNER
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
++
++int main (int argc, char * argv[]) {
++    return Catch::Session().run( argc, argv );
++}
+diff --git a/tests/fingerprintingtests.cpp b/tests/fingerprintingtests.cpp
+index 19dcd3b..8d16bab 100644
+--- a/tests/fingerprintingtests.cpp
++++ b/tests/fingerprintingtests.cpp
+@@ -9,7 +9,11 @@
+ #include "testhelper.h"
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+diff --git a/tests/hashtest.cpp b/tests/hashtest.cpp
+index 964c332..17dff02 100644
+--- a/tests/hashtest.cpp
++++ b/tests/hashtest.cpp
+@@ -2,7 +2,11 @@
+ #include <stdlib.h>
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+diff --git a/tests/input_tests.cpp b/tests/input_tests.cpp
+index aac1cb1..58285cd 100644
+--- a/tests/input_tests.cpp
++++ b/tests/input_tests.cpp
+@@ -4,7 +4,11 @@
+ #include <fstream>
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+diff --git a/tests/measurement_tests.cpp b/tests/measurement_tests.cpp
+index 8ccb5c0..f85c328 100644
+--- a/tests/measurement_tests.cpp
++++ b/tests/measurement_tests.cpp
+@@ -6,7 +6,11 @@
+ #include <numeric>
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+@@ -209,8 +213,12 @@ class PartitionGenerator : public Catch::Generators::IGenerator<std::vector<STR>
+ 
+ template <typename STR>
+ Catch::Generators::GeneratorWrapper<std::vector<STR>> partitions(STR str) {
++#ifdef CATCH3
++    return Catch::Generators::GeneratorWrapper<std::vector<STR>>(new PartitionGenerator<STR>(str));
++#else
+     return Catch::Generators::GeneratorWrapper<std::vector<STR>>(
+         std::unique_ptr<Catch::Generators::IGenerator<std::vector<STR>>>(new PartitionGenerator<STR>(str)));
++#endif
+ }
+ 
+ TEST_CASE("test for PartitionGenerator", "[measurement]") {
+diff --git a/tests/surface.cpp b/tests/surface.cpp
+index 4ba2f50..7a7f406 100644
+--- a/tests/surface.cpp
++++ b/tests/surface.cpp
+@@ -4,7 +4,11 @@
+ #include <limits>
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+diff --git a/tests/terminal_misc.cpp b/tests/terminal_misc.cpp
+index c717193..569d55c 100644
+--- a/tests/terminal_misc.cpp
++++ b/tests/terminal_misc.cpp
+@@ -3,7 +3,11 @@
+ #include <string>
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+diff --git a/tests/terminaloutput.cpp b/tests/terminaloutput.cpp
+index 48ce6f3..99d0f36 100644
+--- a/tests/terminaloutput.cpp
++++ b/tests/terminaloutput.cpp
+@@ -1,6 +1,10 @@
+ // SPDX-License-Identifier: BSL-1.0
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+diff --git a/tests/terminaloutput_main.cpp b/tests/terminaloutput_main.cpp
+index ac3b9af..66242b9 100644
+--- a/tests/terminaloutput_main.cpp
++++ b/tests/terminaloutput_main.cpp
+@@ -3,7 +3,11 @@
+ #define CATCH_CONFIG_NOSTDOUT
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+@@ -344,7 +348,11 @@ int main( int argc, char* argv[] ) {
+     std::string testdriver;
+     bool valgrind = false;
+ 
++#ifdef CATCH3
++    using namespace Catch::Clara;
++#else
+     using namespace Catch::clara;
++#endif
+ 
+     auto cli
+       = session.cli()
+diff --git a/tests/testhelper.h b/tests/testhelper.h
+index 095359f..3d57749 100644
+--- a/tests/testhelper.h
++++ b/tests/testhelper.h
+@@ -7,7 +7,11 @@
+ #include <termpaint.h>
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+diff --git a/tests/utf8_tests.cpp b/tests/utf8_tests.cpp
+index 4a45c0d..adc8e9a 100644
+--- a/tests/utf8_tests.cpp
++++ b/tests/utf8_tests.cpp
+@@ -2,7 +2,11 @@
+ #include <string.h>
+ 
+ #ifndef BUNDLED_CATCH2
++#ifdef CATCH3
++#include "catch2/catch_all.hpp"
++#else
+ #include "catch2/catch.hpp"
++#endif
+ #else
+ #include "../third-party/catch.hpp"
+ #endif
+@@ -199,6 +203,6 @@ TEST_CASE( "utf8 brute force unicode", "[utf8]" ) {
+     codepoint_test(1, 0x10ffff);
+ }
+ 
+-TEST_CASE( "utf8 brute force", "[!hide][utf8slow]" ) {
++TEST_CASE( "utf8 brute force", "[.utf8slow]" ) {
+     codepoint_test(1, 0x7fffffff);
+ }
+-- 
+2.39.1
+

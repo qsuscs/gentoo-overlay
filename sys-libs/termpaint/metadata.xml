@@ -5,6 +5,9 @@
     <email>qsx@chaotikum.eu</email>
     <name>Thomas Schneider</name>
   </maintainer>
+  <use>
+    <flag name="tools">Install additional tools</flag>
+  </use>
   <upstream>
     <remote-id type="github">termpaint/termpaint</remote-id>
     <doc>https://termpaint.namepad.de/latest/</doc>

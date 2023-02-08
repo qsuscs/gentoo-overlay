@@ -1,0 +1,34 @@
+From 854e738c0f6b1594497cec644aa9cda71c360185 Mon Sep 17 00:00:00 2001
+From: Martin Hostettler <textshell@uchuujin.de>
+Date: Wed, 8 Feb 2023 21:57:20 +0100
+Subject: [PATCH 2/4] termpaint_input: Add missing `void` in parameter list.
+
+---
+ termpaint_input.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/termpaint_input.c b/termpaint_input.c
+index 4769130..2946cb4 100644
+--- a/termpaint_input.c
++++ b/termpaint_input.c
+@@ -1410,7 +1410,7 @@ static void termpaintp_input_raw(termpaint_input *ctx, const unsigned char *data
+     }
+ }
+ 
+-termpaint_input *termpaint_input_new_or_nullptr() {
++termpaint_input *termpaint_input_new_or_nullptr(void) {
+     termpaintp_input_selfcheck();
+     termpaint_input *ctx = calloc(1, sizeof(termpaint_input));
+     if (!ctx) {
+@@ -1427,7 +1427,7 @@ termpaint_input *termpaint_input_new_or_nullptr() {
+     return ctx;
+ }
+ 
+-termpaint_input *termpaint_input_new() {
++termpaint_input *termpaint_input_new(void) {
+     termpaint_input *ret = termpaint_input_new_or_nullptr();
+     if (!ret) {
+         abort();
+-- 
+2.39.1
+
