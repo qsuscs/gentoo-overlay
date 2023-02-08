@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <longdescription lang="en">
+    With docopt, the option parser is generated based on the program's
+    docstring.  docopt parses the usage pattern ("Usage: ...") and
+    option descriptions (lines starting with dash "-") and ensures that
+    the program invocation matches the usage pattern. It parses options,
+    arguments and commands based on that. The basic idea is that a good
+    help message has all necessary information in it to make a parser.
+  </longdescription>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">docopt/docopt.cpp</remote-id>
+  </upstream>
+</pkgmetadata>

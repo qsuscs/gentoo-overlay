@@ -1,0 +1,54 @@
+From: Ghislain Antony Vaillant <ghisvail@gmail.com>
+Date: Thu, 2 Mar 2017 11:05:32 +0000
+Subject: Make tests compatible with Python 3
+
+---
+ run_tests.py | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/run_tests.py b/run_tests.py
+index ef723b4..481b265 100755
+--- a/run_tests.py
++++ b/run_tests.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python2
++#!/usr/bin/env python3
+ 
+ import re
+ import sys
+@@ -43,7 +43,7 @@ for _, doc, cases in parse_test(tests):
+ 			if expect_error:
+ 				error = " ** an error was expected but it appeared to succeed!"
+ 			else:
+-				json_out = json.loads(out)
++				json_out = json.loads(out.decode())
+ 				if expect != json_out:
+ 					error = " ** JSON does not match expected: %r" % expect
+ 		except subprocess.CalledProcessError as e:
+@@ -56,17 +56,17 @@ for _, doc, cases in parse_test(tests):
+ 
+ 		failures += 1
+ 
+-		print "="*40
+-		print doc
+-		print ':'*20
+-		print prog, argv
+-		print '-'*20
++		print("="*40)
++		print(doc)
++		print(':'*20)
++		print(prog, argv)
++		print('-'*20)
+ 		if out:
+-			print out
+-		print error
++			print(out)
++		print(error)
+ 
+ if failures:
+-	print "%d failures" % failures
++	print("%d failures" % failures)
+ 	sys.exit(1)
+ else:
+-	print "PASS (%d)" % passes
++	print("PASS (%d)" % passes)
