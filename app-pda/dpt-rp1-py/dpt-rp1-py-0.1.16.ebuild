@@ -27,7 +27,7 @@ RDEPEND="
 	>=dev-python/urllib3-1.22[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	dev-python/anytree[${PYTHON_USEDEP}]
-	dev-python/python-zeroconf[${PYTHON_USEDEP}]
+	dev-python/zeroconf[${PYTHON_USEDEP}]
 	dev-python/tqdm[${PYTHON_USEDEP}]
 	${PYTHON_DEPS}
 "
