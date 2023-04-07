@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>qsx@chaotikum.eu</email>
+    <name>Thomas Schneider</name>
+  </maintainer>
+  <longdescription>
+    A small, portable GNU readline replacement for Linux, Windows and
+    MacOS which is capable of handling UTF-8 characters. Unlike GNU
+    readline, which is GPL, this library uses a BSD license and can be
+    used in any kind of program.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">AmokHuginnsson/replxx</remote-id>
+    <bugs-to>https://github.com/AmokHuginnsson/replxx/issues/new/choose</bugs-to>
+    <maintainer>
+      <name>Marcin Konarski</name>
+      <email>amok@codestation.org</email>
+    </maintainer>
+    <doc>https://looking-glass.io/docs/</doc>
+  </upstream>
+</pkgmetadata>
