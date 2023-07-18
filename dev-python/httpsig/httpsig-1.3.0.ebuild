@@ -18,7 +18,7 @@ SLOT="0"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-BDEPEND="dev-python/setuptools_scm[${PYTHON_USEDEP}]"
+BDEPEND="dev-python/setuptools-scm[${PYTHON_USEDEP}]"
 RDEPEND="
 	=dev-python/pycryptodome-3*[${PYTHON_USEDEP}]
 	dev-python/six[${PYTHON_USEDEP}]

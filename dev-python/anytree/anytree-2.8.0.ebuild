@@ -19,7 +19,7 @@ SLOT="0"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 BDEPEND="
-	dev-python/setuptools_scm[${PYTHON_USEDEP}]
+	dev-python/setuptools-scm[${PYTHON_USEDEP}]
 	${BDEPEND}
 "
 RDEPEND="
