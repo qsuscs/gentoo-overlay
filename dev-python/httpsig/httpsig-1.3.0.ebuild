@@ -1,15 +1,15 @@
-# Copyright 2022 Thomas Schneider <qsx@chaotikum.eu>
+# Copyright 2023 Thomas Schneider <qsx@chaotikum.eu>
 # Licensed under the EUPL
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{8..10} )
-inherit distutils-r1
+PYTHON_COMPAT=( python3_{9..11} )
+inherit distutils-r1 pypi
 
 DESCRIPTION="Secure HTTP request signing using the HTTP Signature draft specification"
 HOMEPAGE="https://github.com/ahknight/httpsig"
 
-SRC_URI="mirror://pypi/${PN::1}/${PN}/${P}.tar.gz"
+SRC_URI="$(pypi_sdist_url)"
 KEYWORDS="~amd64"
 
 LICENSE="MIT"
