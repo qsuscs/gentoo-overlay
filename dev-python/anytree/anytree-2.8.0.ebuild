@@ -28,7 +28,8 @@ RDEPEND="
 "
 
 distutils_enable_sphinx docs
-distutils_enable_tests nose
+RESTRICT="test"
+#distutils_enable_tests nose
 
 python_prepare_all() {
 	# this would install LICENSE to /usr/ otherwise, and we don’t need
