@@ -3,15 +3,11 @@
 
 EAPI=7
 
-inherit autotools
-
-HASH="46bb4c073624226c3f05b37b9ecc50bbcf543f5a"
+inherit git-r3 autotools
 
 DESCRIPTION="Tool from Rockchip to communicate with Rockusb devices"
 HOMEPAGE="http://opensource.rock-chips.com/wiki_Rkdeveloptool https://github.com/rockchip-linux/rkdeveloptool"
-SRC_URI="https://github.com/rockchip-linux/rkdeveloptool/archive/${HASH}.tar.gz -> ${P}.tar.gz"
-
-S="${WORKDIR}/${PN}-${HASH}"
+EGIT_REPO_URI="https://github.com/rockchip-linux/rkdeveloptool.git"
 
 LICENSE="GPL-2+"
 SLOT="0"
